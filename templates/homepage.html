@@ -16,9 +16,9 @@
   <p>Please upload you image in the form below.</p>
 </div>
 
-<form action="/", method='POST'>
-    <input type="image" name="image" id="image">
-    <input type="submit" value="upload image">
+<form method="POST" action="" enctype="multipart/form-data">
+  <p><input type="file" name="file" multiple></p>
+  <p><input type="submit" value="Submit"></p>
 </form>
 
 </body>
