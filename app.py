@@ -1,6 +1,7 @@
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
+from torch_utils import transform_image, get_prediction
 # instanciate a Flask application, __name__ will reference this file, embedding it in a flask server
 app = Flask(__name__)
 
@@ -40,9 +41,22 @@ def predict():
     # 1 transform uploaded images to tensors
     tensor_images = []
     for file in os.listdir("./temp"):
-        tensor_images.append(transorm_image(file))
+        tensor_images.append(transform_image(file))
+        os.remove(file) # file not needed to be stored anymore
+    
+    # 2 get predictions
+    predictions = []
+    for image in tensor_images:
+        predictions.append(get_prediction(image))
+    
+    # 3 instanciate a dict to return
+    ret = {'images': [], 'class': []}
+    for im, pred in zip(tensor_images, predictions):
+        ret['images'].append(im.detach().cpu().numpy().squeeze())
+        ret['class'].append(pred)
 
-
+    # 4 return jsonify of the dict
+    return jsonify(ret)
 
 
 if __name__ == "__main__":
