@@ -1,0 +1,10 @@
+body{
+    font-family: sans-serif;
+    color: dimgrey;
+}
+
+.Banner {
+    border: 5px outset red;
+    background-color: lightblue;    
+    text-align: center;
+  }
