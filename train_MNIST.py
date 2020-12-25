@@ -22,8 +22,8 @@ optim = torch.optim.SGD(model.parameters(), lr=lr, momentum=momentum)
 # define the dataset
 transform = transforms.Compose([transforms.ToTensor(),
                                 transforms.Normalize(mean=(0.1307,), std=(0.3081,))]) # mean and std of MNIST training set
-train_ds = torchvision.datasets.MNIST('./', train=True, download=True, transform=transform)
-test_ds = torchvision.datasets.MNIST('./', train=False, download=True, transform=transform)
+train_ds = torchvision.datasets.MNIST('./', train=True, download=False, transform=transform)
+test_ds = torchvision.datasets.MNIST('./', train=False, download=False, transform=transform)
 
 # define the data loaders
 train_loader = torch.utils.data.DataLoader(train_ds, batch_size=batch_size_train, num_workers=num_workers_train, shuffle=True)
