@@ -1,13 +1,17 @@
 from flask import Flask, render_template, url_for, request, redirect, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
-from torch_utils import transform_image, get_prediction
+from torch_utils import transformImage, getPrediction
 # instanciate a Flask application, __name__ will reference this file, embedding it in a flask server
 app = Flask(__name__)
 
 # set up flags for upload security checks
 app.config['UPLOAD_EXTENSIONS'] = ['jpeg', 'jpg', 'png', 'gif']
 app.config['MAX_CONTENT_LENGTH'] = 1024*1024
+
+# get torch utils to transform images and get predictions
+transform_image = transformImage()
+get_prediction = getPrediction()
 
 # handle initial page
 @app.route('/', methods = ['GET','POST'])
@@ -40,14 +44,22 @@ def index():
 def predict():
     # 1 transform uploaded images to tensors
     tensor_images = []
-    for file in os.listdir("./temp"):
-        tensor_images.append(transform_image(file))
-        os.remove(file) # file not needed to be stored anymore
+    try: 
+        for file in os.listdir("./temp"):
+            with(open("./temp/" + file, 'rb')) as f:
+                tensor_images.append(transform_image(f.read()))
+            os.remove("./temp/" + file) # file not needed to be stored anymore
+            os.rmdir("./temp")
+    except:
+        return "Something went wrong while preprocessing the uploaded images..."
     
     # 2 get predictions
     predictions = []
-    for image in tensor_images:
-        predictions.append(get_prediction(image))
+    try:
+        for image in tensor_images:
+            predictions.append(get_prediction(image))
+    except:
+        return "Something went wrong while making predictions on the uploaded images..."
     
     # 3 instanciate a dict to return
     ret = {'images': [], 'class': []}
@@ -56,7 +68,7 @@ def predict():
         ret['class'].append(pred)
 
     # 4 return jsonify of the dict
-    return jsonify(ret)
+    return render_template('predict.html', ret=ret)
 
 
 if __name__ == "__main__":
