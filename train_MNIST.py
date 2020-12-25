@@ -116,8 +116,8 @@ for epoch in range(1, max_epochs+1):
         target = target.to(device)
 
         # forward pass
-        predictions = model(images)
-        loss = criterion(predictions, target)
+        output = model(images)
+        loss = criterion(output, target)
 
         # backward pass
         optim.zero_grad()
