@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, request, redirect, jsonify, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
 import os
 from torch_utils import transformImage, getPrediction
 # instanciate a Flask application, __name__ will reference this file, embedding it in a flask server
@@ -43,7 +42,7 @@ def upload_files():
             file_to_upload.save(os.path.join(app.config['UPLOAD_PATH'],filename))
   
     # redirect to initial page    
-    return redirect('/')
+    return redirect(url_for('index'))
 
 # function to retrieve a particular file
 @app.route('/uploads/<filename>')
@@ -85,4 +84,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()

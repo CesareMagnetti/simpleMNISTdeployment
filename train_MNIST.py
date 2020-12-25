@@ -6,7 +6,7 @@ import os, json
 from torch_utils import Net, device
 
 # define some variables for the training routine
-max_epochs = 10
+max_epochs = 25
 batch_size_train, batch_size_test = 64, 32
 num_workers_train, num_workers_test = 0, 0
 lr, momentum = 0.01, 0.5
@@ -21,9 +21,10 @@ optim = torch.optim.SGD(model.parameters(), lr=lr, momentum=momentum)
 
 # define the dataset
 transform = transforms.Compose([transforms.ToTensor(),
-                                transforms.Normalize(mean=(0.1307,), std=(0.3081,))]) # mean and std of MNIST training set
-train_ds = torchvision.datasets.MNIST('./', train=True, download=False, transform=transform)
-test_ds = torchvision.datasets.MNIST('./', train=False, download=False, transform=transform)
+                                transforms.Normalize(mean=(0.1307,), std=(0.3081,)), # mean and std of MNIST training set
+                                transforms.ColorJitter()]) # randomly change contrast, brightness, saturation 
+train_ds = torchvision.datasets.MNIST('./', train=True, download=True, transform=transform)
+test_ds = torchvision.datasets.MNIST('./', train=False, download=True, transform=transform)
 
 # define the data loaders
 train_loader = torch.utils.data.DataLoader(train_ds, batch_size=batch_size_train, num_workers=num_workers_train, shuffle=True)
