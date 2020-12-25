@@ -15,15 +15,14 @@
     <h2>Predictions on the uploaded images</h2>
 </div>
 
-{% for r in ret['class'] %}
-
-<h4 style="text-align: center"> prediction: {{r}}</h4>
+{% for f in files %}
+<img src="{{ url_for('upload', filename=f.filename) }}" style="width: 64px">
+<p> prediction: {{f['class']}}</p>
 
 {% endfor %}
 
 <!-- link to go back to home page -->
 <a href="/">Back to Homepage</a>
-
 
 </body>
 </html>
