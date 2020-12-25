@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;    
+  text-align: center;
+}
+</style>
+</head>
+<body>
+
+<div class="myDiv">
+    <h2>Predictions on the uploaded images</h2>
+</div>
+
+{% for r in ret['class'] %}
+
+<h4 style="text-align: center"> prediction: {{r}}</h4>
+
+{% endfor %}
+
+<!-- link to go back to home page -->
+<a href="/">Back to Homepage</a>
+
+
+</body>
+</html>
