@@ -1,10 +1,130 @@
 body{
     font-family: sans-serif;
-    color: dimgrey;
+    color: rgb(77, 76, 76);
+    background-color: rgb(239, 248, 252);
 }
 
 .Banner {
     border: 5px outset red;
     background-color: lightblue;    
     text-align: center;
+  }
+
+.file-upload {
+    background-color: rgb(239, 248, 252);
+    width: 220px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+.submit-image {
+    width: 220px;
+    margin: 0;
+    color: #fff;
+    background: #1FB264;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #15824B;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+.submit-image:hover {
+    background: #1AA059;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+.submit-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+.predict-image {
+    width: 120;
+    margin: 0;
+    color: #fff;
+    background: #3967c9;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #2f5096;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+.predict-image:hover {
+    background: #3c71e2;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+.predict-image:active {
+    border: 0;
+    transition: all .2s ease;
+  }
+
+.pred-text {
+    width: 200px;
+    margin: 0;
+    color: rgb(77, 76, 76);
+    background: #c2c7c4;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b8bbb9;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+/* Create 4 equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 25%;
+    padding: 2px;
+  }
+  
+.column img {
+    margin-top: 12px;
+  }
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.remove-image {
+    width: 220px;
+    margin: 0;
+    color: #fff;
+    background: #cd4535;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    border-bottom: 4px solid #b02818;
+    transition: all .2s ease;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  
+.remove-image:hover {
+    background: #c13b2a;
+    color: #ffffff;
+    transition: all .2s ease;
+    cursor: pointer;
+  }
+  
+.remove-image:active {
+    border: 0;
+    transition: all .2s ease;
   }
