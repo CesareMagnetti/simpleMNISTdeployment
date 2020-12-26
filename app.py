@@ -50,13 +50,13 @@ def upload(filename):
     return send_from_directory(app.config['UPLOAD_PATH'], filename)
 
 # remove uploaded file
-@app.route('/delete/<filename>')
+@app.route('/delete/<filename>', methods=['POST'])
 def delete(filename):
     os.remove(os.path.join(app.config['UPLOAD_PATH'], filename))
     return redirect(url_for('index'))
 
 # predict on the uploaded files
-@app.route('/predict')
+@app.route('/predict', methods=['POST'])
 def predict():
     
     out = []
@@ -84,4 +84,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
