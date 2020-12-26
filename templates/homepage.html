@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
-<style>
-.BannerDiv {
-  border: 5px outset red;
-  background-color: lightblue;    
-  text-align: center;
-}
-</style>
-</head>
-<body>
 
-<div class="BannerDiv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+</head>
+
+<body>
+<div class="Banner">
   <h2>This is a simple web app for MNIST classification</h2>
-  <p>Please upload you image in the form below.</p>
+  <p>Please upload your images, submit them and then press predict.</p>
+
+  <!-- form-button to upload images --> 
+  <form method="POST" action="" enctype="multipart/form-data">
+    <input class="submit-image" type="file" name="file" multiple>
+    <input class="submit-image" type="submit" value="Submit">
+  </form>
+  <br>
+  <!-- form-button to predict on uploaded images --> 
+  <form action="/predict" method="POST">
+    <input class="predict-image" type="submit" value="Get Predictions">
+  </form> 
 </div>
 
-<form method="POST" action="" enctype="multipart/form-data">
-  <p><input type="file" name="file" multiple></p>
-  <p><input type="submit" value="Submit"></p>
-</form>
+
+
+
 
 {% for file in files %}
-  <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
-  <!-- link to remove uploaded image -->
-  <a href="/delete/{{file}}"><p style="color: red;">x</p></a>
+  <div class="column">
+    <div class="file-upload">
+        <img src="{{ url_for('upload', filename=file) }}" style="width: 100%"></img>
+        <!-- form-button to remove uploaded image --> 
+        <form action="/delete/{{file}}" method="POST">
+          <input class="remove-image" type="submit" value="Remove {{file}}">
+        </form> 
+    </div>
+  </div>
 {% endfor %}
-
-<!-- link to predict uploaded image -->
-<a href="/predict">Predict</a>
-
-
-
 
 </body>
 </html>
+

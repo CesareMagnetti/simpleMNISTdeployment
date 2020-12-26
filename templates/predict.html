@@ -1,28 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.myDiv {
-  border: 5px outset red;
-  background-color: lightblue;    
-  text-align: center;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
 
-<div class="myDiv">
-    <h2>Predictions on the uploaded images</h2>
+<div class="Banner">
+    <h2>Predictions on the uploaded images</h2><br><br>
+    <!-- link to go back to home page -->
+    <a class="predict-image" href="/">Back to Homepage</a>
 </div>
 
-{% for f in files %}
-<img src="{{ url_for('upload', filename=f.filename) }}" style="width: 64px">
-<p> prediction: {{f['class']}}</p>
-
+{% for file in files %}
+<div class="column">
+    <div class="file-upload">
+        <img src="{{ url_for('upload', filename=file.filename) }}" style="width: 100%"></img>
+        <p class="pred-text"> prediction: {{file['class']}}</p>
+    </div>
+</div>
 {% endfor %}
 
-<!-- link to go back to home page -->
-<a href="/">Back to Homepage</a>
+
 
 </body>
 </html>
