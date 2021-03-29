@@ -1,7 +1,7 @@
 ## simple MNIST classifier deployment with Flask and PyTorch
 
-Small project to deploy a pytorch model on heroku, potentially allowing for user inputs.<br> 
-User interface will be minimal (if any) as this is not an HTML/css project but more a project to learn about deploying ML models as web applications.<br><br>
+Small project to deploy a pytorch model on heroku, allowing for user inputs.<br> 
+User interface will be minimal as this is not a project centered on HTML/css but more a personal project to learn about deploying ML models as web applications using heroku.<br><br>
 
 
 ## Usage
